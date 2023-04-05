@@ -27,14 +27,14 @@
         <label for="email">Email:</label><br />
         <input type="text" id="email" name="email">
     
-       <button data-callback="subscribe">Submit</button>
+    <input type="submit"></input>
     </form>
   
   <script type="text/javascript">
         const form = document.getElementById("klaviyo-custom-form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
     
-    function subscribe() {
-        let account = "";
         let firstName = form.fname.value;
         let lastName = form.lname.value;
         let email = form.email.value;
