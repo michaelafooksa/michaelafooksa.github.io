@@ -10,12 +10,6 @@
 </head>
 <body>
   <h1>Hello, World!</h1>
-  <button id="clickme">Click Here</button>
-<!--   <script type="text/javascript">
-    document.getElementById("clickme").addEventListener('click',function (){
-        klaviyo.push(['track', 'Clicked Button']);
-    });
-  </script> -->
   
   <form id="klaviyo-custom-form">
         <label for="fname">First Name:</label><br />
@@ -41,32 +35,35 @@
     
         const options = {
           method: 'POST',
-          headers: { revision: '2023-02-22', 'content-type': 'application/json' },
+          headers: { 'accept': 'application/json', 'content-type': 'application/json' },
           body: JSON.stringify({
-            data: {
-              type: 'event',
-              attributes: {
-                profile: {
+            'data': {
+              'type': 'event',
+              'attributes': {
+                'profile': {
                   '$email': email,
                   'First Name': firstName,
                   'Last Name': lastName
                  },
-                 metric: {
+                 'metric': {
                   'name': 'Clicked Button'
                  },
-                properties: {}
+                'properties': {}
                }
              }
            })
          };
 
          fetch(`https://michaela-fooksa.npkn.net/api-demo/`, options)
-//           .then(response => {
-//             if (response.status !== 202) { // Client-side endpoints always return 202 as data is processed async
-//               console.log(response.statusTest);
-//             }
-//           })
-//           .catch(err => console.error(err));
+          .then((response) => response.json())
+            .then((data) => {
+                console.log("data");
+                console.log(data);
+              })
+              .catch(err => {
+                console.log("error!");
+                console.error(err);
+              });
     })
     </script>
   
