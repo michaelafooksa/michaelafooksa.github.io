@@ -80,6 +80,14 @@
         })
         .catch(err => console.error(err));
   })
+    window.addEventListener("klaviyoForms", function(e) { 
+        if (e.detail.type == 'submit' ) {
+            klaviyo.track('Submitted Klaviyo Form', {
+                formId: e.detail.formId,
+                other: e.detail.mataData
+            });
+         }
+    });
   </script>
   <!-- <script type="text/javascript">
     const form = document.getElementById("klaviyo-custom-form");
